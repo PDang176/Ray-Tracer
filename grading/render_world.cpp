@@ -25,12 +25,10 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
     // TODO;
     Hit result;
 	result.object = NULL;
-	result.dist = 0;
-	result.part = -1;
 	double min_t = std::numeric_limits<double>::max();
 	for(Object* o : objects){
 		Hit temp = o->Intersection(ray, -1);
-		if(temp.dist >= small_t && temp.dist < min_t){
+		if(temp.object != NULL && temp.dist >= small_t && temp.dist <= min_t){
 			result = temp;
 			min_t = temp.dist;
 		}	
