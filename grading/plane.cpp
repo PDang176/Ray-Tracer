@@ -9,30 +9,15 @@
 Hit Plane::Intersection(const Ray& ray, int part) const
 {
     // TODO;
-    Hit result;
-	if(dot(ray.endpoint - x1, normal) == 0){
-		result.object = this;
-		result.dist = 0;
-		result.part = part;
-		return result;
-	}
-
 	double denominator = dot(ray.direction, normal);
-	double t = -1;
-	if(denominator > 0){
-		vec3 temp = x1 - ray.endpoint;
-		double numerator = dot(temp, normal);
-		t = numerator / denominator;
+	if(denominator != 0){
+		double numerator = dot(x1 - ray.endpoint, normal);
+		double t = numerator / denominator;
+		if(t >= small_t){
+			return {this, t, part};
+		}
 	}
-	if(t >= 0){
-		result.object = this;
-		result.dist = t;
-		result.part = part;
-	}
-	else{
-		result.object = NULL;
-	}
-	return result;
+	return {NULL, 0, part};
 }
 
 vec3 Plane::Normal(const vec3& point, int part) const
