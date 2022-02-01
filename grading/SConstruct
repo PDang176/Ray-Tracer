@@ -1,8 +1,10 @@
 import os
 env = Environment(ENV = os.environ)
 
-env.Append(LIBS=["png"])
-env.Append(CXXFLAGS=["-std=c++11","-g","-Wall","-O3","-I/usr/include/libpng12"])
+# env.Append(LIBS=["png"])
+env.Append(LIBS=["png16"])
+# env.Append(CXXFLAGS=["-std=c++11","-g","-Wall","-O3","-I/usr/include/libpng12"])
+env.Append(CXXFLAGS=["-std=c++11","-g","-Wall","-O3","-I/usr/include/libpng16"])
 env.Append(LINKFLAGS=["-L/usr/local/lib"])
 
 env.Program("ray_tracer",
