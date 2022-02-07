@@ -46,7 +46,8 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
             vec3 r = (2 * dot(normal, l) * normal) - l;
             r = r.normalized();
 
-            vec3 c = -ray.direction.normalized();
+            vec3 c = world.camera.position - intersection_point;
+            c = c.normalized();
             double specular_intensity = std::max(dot(r, c), 0.0);
             specular_intensity = pow(specular_intensity, specular_power);
 
